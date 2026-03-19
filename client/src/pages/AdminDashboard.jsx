@@ -37,7 +37,7 @@ export default function AdminDashboard() {
           className="admin-logout-btn"
           onClick={async () => {
             await authApi.logout();
-            navigate("/admin-login", { replace: true });
+            navigate("/login", { replace: true });
           }}
         >
           Logout
