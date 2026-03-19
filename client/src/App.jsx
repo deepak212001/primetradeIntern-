@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin";
 
 function ProtectedRoute({ children, adminOnly }) {
   const [user, setUser] = useState(null);
@@ -29,6 +30,7 @@ export default function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/admin-login" element={<AdminLogin />} />
       <Route
         path="/"
         element={

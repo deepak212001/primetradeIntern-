@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { adminApi, authApi } from "../api";
 import "./AdminDashboard.css";
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,15 @@ export default function AdminDashboard() {
             <Link to="/admin" className="admin-link active">Admin Dashboard</Link>
           </nav>
         </div>
+        <button
+          className="admin-logout-btn"
+          onClick={async () => {
+            await authApi.logout();
+            navigate("/admin-login", { replace: true });
+          }}
+        >
+          Logout
+        </button>
       </header>
 
       <div className="admin-stats">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { authApi } from "../api";
+import { authApi, setToken } from "../api";
 import "./Auth.css";
 
 export default function Register() {
@@ -18,7 +18,8 @@ export default function Register() {
     setSuccess("");
     setLoading(true);
     try {
-      await authApi.register({ name, email, password });
+      const res = await authApi.register({ name, email, password });
+      if (res.data?.token) setToken(res.data.token);
       setSuccess("Registration successful! Redirecting...");
       setTimeout(() => navigate("/", { replace: true }), 1000);
     } catch (err) {

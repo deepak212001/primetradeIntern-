@@ -44,7 +44,8 @@ const loginUser = asyncHandler(async (req, res, next) => {
   const validatedData = loginSchema.parse(req.body);
   const {email, password} = validatedData;
 
-  const user = await User.findOne({email});
+  // Case-insensitive email search (DB may have Admin@admin.com or admin@admin.com)
+  const user = await User.findOne({ email: { $regex: new RegExp(`^${email.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i") } });
   console.log("[LOGIN API] User found:", user?.email ?? "null");
   if (!user) {
     return next(new ApiError(401, "Invalid credentials"));

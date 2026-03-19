@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { authApi, setToken } from "../api";
+import { adminApi, setToken } from "../api";
 import "./Auth.css";
 
 export default function Login() {
@@ -17,10 +17,10 @@ export default function Login() {
     setSuccess("");
     setLoading(true);
     try {
-      const res = await authApi.login({ email, password });
+      const res = await adminApi.login({ email, password });
       if (res.data?.token) setToken(res.data.token);
       setSuccess("Login successful!");
-      navigate("/", { replace: true });
+      navigate("/admin", { replace: true });
     } catch (err) {
       setError(err.message || "Login failed");
     } finally {
@@ -60,12 +60,6 @@ export default function Login() {
             {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
-        <p className="auth-footer">
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
-        <p className="auth-footer">
-          <Link to="/admin-login">Admin Login</Link>
-        </p>
       </div>
     </div>
   );

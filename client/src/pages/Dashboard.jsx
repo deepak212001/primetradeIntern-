@@ -99,7 +99,9 @@ export default function Dashboard() {
           <h1>Task Manager</h1>
           <nav className="main-nav">
             <Link to="/">Tasks</Link>
-            <Link to="/admin" className="admin-link">Admin Dashboard</Link>
+            {user?.role === "admin" && (
+              <Link to="/admin" className="admin-link">Admin Dashboard</Link>
+            )}
           </nav>
         </div>
         <div className="header-right">
