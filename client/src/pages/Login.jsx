@@ -64,8 +64,15 @@ export default function Login() {
           Don't have an account? <Link to="/register">Register</Link>
         </p>
         <p className="auth-footer">
-          <Link to="/admin-login">Admin Login</Link>
+          For Admin Login,
+          <br />
+          Email: admin@admin.com
+          <br />
+          Password: admin123
         </p>
+        {/* <p className="auth-footer">
+          <Link to="/admin-login">Admin Login</Link>
+        </p> */}
       </div>
     </div>
   );
