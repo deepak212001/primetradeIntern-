@@ -1,4 +1,4 @@
-const API_BASE = "/api/v1";
+const API_BASE = "https://primetrade-intern-karz.vercel.app/api/v1";
 
 const fetchApi = async (path, options = {}) => {
   const res = await fetch(`${API_BASE}${path}`, {
